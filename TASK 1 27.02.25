@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>task 1</title>
+</head>
+<body>
+    <p><b>This para is in bold format</b></p>
+    <p><strong>This para is in strong format</strong></p>
+    <p>this<sup>is the example of superscript</sup></p>
+    <p>this<sub>is the example of subscript</sub></p>
+    <p>this is the example <ins>of INS tab formatting</ins></p>
+    </body>
+</html>
