@@ -85,7 +85,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product List</title>
+<title>Product List with Total</title>
 <style>
   table {
     width: 100%;
@@ -98,6 +98,11 @@
   }
   tfoot {
     font-weight: bold;
+  }
+  button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    cursor: pointer;
   }
 </style>
 </head>
@@ -113,30 +118,50 @@
         <th>Quantity</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="productTableBody">
       <tr>
         <td>Laptop</td>
-        <td>50000</td>
-        <td>2</td>
+        <td class="price">50000</td>
+        <td class="quantity">2</td>
       </tr>
       <tr>
         <td>Mouse</td>
-        <td>500</td>
-        <td>5</td>
+        <td class="price">500</td>
+        <td class="quantity">5</td>
       </tr>
       <tr>
         <td>Keyboard</td>
-        <td>1500</td>
-        <td>3</td>
+        <td class="price">1500</td>
+        <td class="quantity">3</td>
       </tr>
-      </tbody>
+    </tbody>
     <tfoot>
       <tr>
         <td colspan="2">Total Price</td>
-        <td>₹ 104000</td>
+        <td id="totalPrice"></td>
       </tr>
     </tfoot>
   </table>
+
+  <button onclick="calculateTotal()">Calculate Total</button>
+
+  <script>
+    function calculateTotal() {
+      const tableBody = document.getElementById('productTableBody');
+      const priceElements = tableBody.getElementsByClassName('price');
+      const quantityElements = tableBody.getElementsByClassName('quantity');
+      const totalPriceElement = document.getElementById('totalPrice');
+
+      let total = 0;
+      for (let i = 0; i < priceElements.length; i++) {
+        const price = parseFloat(priceElements[i].textContent);
+        const quantity = parseInt(quantityElements[i].textContent);
+        total += price * quantity;
+      }
+
+      totalPriceElement.textContent = '₹ ' + total.toLocaleString();
+    }
+  </script>
 
 </body>
 </html>
