@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a=60;
+        var b=20;
+        document.write("Addition is: " + (a+b) + "<br>");
+        document.write("Subtraction is: " + (a-b) + "<br>");    
+        document.write("Multiplication is: " + (a*b) + "<br>");
+        document.write("Division is: " + (a/b) + "<br>");
+        document.write("Modulus is: " + (a%b) + "<br>");
+    </script>
+</body>
+</html>
