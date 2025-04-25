@@ -1,0 +1,148 @@
+<!-- question 1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Login</title>
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  .form-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  input:invalid {
+    border-color: red; /* Style for invalid fields */
+  }
+  input:valid {
+    border-color: green; /* Optional: Style for valid fields */
+  }
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" minlength="4" required>
+        <div class="error-message" id="usernameError">Username must be at least 4 characters.</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" minlength="8" required>
+        <div class="error-message" id="passwordError">Password must be at least 8 characters.</div>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+</body>
+</html>
+
+
+
+<!-- question 2 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product List</title>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  tfoot {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+  <h2>Product List</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Laptop</td>
+        <td>50000</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>Mouse</td>
+        <td>500</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Keyboard</td>
+        <td>1500</td>
+        <td>3</td>
+      </tr>
+      </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">Total Price</td>
+        <td>₹ 104000</td>
+      </tr>
+    </tfoot>
+  </table>
+
+</body>
+</html>
+
+
+
+
+
+
