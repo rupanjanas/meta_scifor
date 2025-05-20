@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Foundation Colored Buttons</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+<div class="grid-container">
+  <h3>Foundation Colored Buttons</h3>
+
+  <button class="button primary">Primary</button>
+  <button class="button secondary">Secondary</button>
+  <button class="button success">Success</button>
+  <button class="button warning">Warning</button>
+  <button class="button alert">Alert</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>
+
+</body>
+</html>
