@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>useEffect Color Change</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      border: 3px solid black;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .btn-block {
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    .counter {
+      margin-top: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function ColorChanger() {
+      const [color, setColor] = useState('yellow');
+      const [colorCounts, setColorCounts] = useState({
+        red: 0,
+        pink: 0,
+        yellow: 0,
+        green: 0,
+      });
+
+      useEffect(() => {
+        console.log(`color change to ${color}`);
+        if (color in colorCounts) {
+          setColorCounts((prev) => ({
+            ...prev,
+            [color]: prev[color] + 1,
+          }));
+        }
+      }, [color]);
+
+      useEffect(() => {
+        const handleBeforeUnload = () => {
+          const summary = Object.entries(colorCounts)
+            .filter(([_, count]) => count > 0)
+            .map(([color, count]) => `${color}: ${count} time(s)`)
+            .join('\n');
+
+          if (summary) {
+            alert(`Color change summary:\n${summary}`);
+          }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+      }, [colorCounts]);
+
+      const colors = ['red', 'pink', 'yellow', 'green'];
+
+      return (
+        <div className="container text-center mt-4">
+          <h1>HOOKS</h1>
+          <h3>Color Change using useEffect hook</h3>
+          <div className="box" style={{ backgroundColor: color }}></div>
+
+          <div className="btn-container">
+            {colors.map((col) => (
+              <div key={col} className="btn-block">
+                <button onClick={() => setColor(col)}>{col.charAt(0).toUpperCase() + col.slice(1)}</button>
+                <div className="counter">{colorCounts[col]} time(s)</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<ColorChanger />);
+  </script>
+</body>
+</html>
