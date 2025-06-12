@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Example with Dummy APIs</title>
+</head>
+<body>
+
+  <h2>User CRUD Demo (Fixed ID: 2)</h2>
+
+  <div id="user">
+    <p><strong>Name:</strong> Priya</p>
+    <p><strong>Email:</strong> abc@example.com</p>
+    <p><strong>Status:</strong> <span id="status">active</span></p>
+  </div>
+
+  <button onclick="getUser()">GET User</button>
+  <button onclick="createUser()">POST (Create)</button>
+  <button onclick="updateStatus()">PATCH (Toggle Status)</button>
+  <button onclick="deleteUser()">DELETE</button>
+
+  <p id="message" style="color: green;"></p>
+
+  <script>
+    let currentStatus = 'active';
+
+    function getUser() {
+      fetch('https://jsonplaceholder.typicode.com/users/2')
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('message').innerText =
+            '✅ User fetched: ' + data.name + ', ' + data.email;
+          console.log('GET:', data);
+        })
+        .catch(err => {
+          console.error('GET Error:', err);
+          document.getElementById('message').innerText = '❌ GET failed.';
+        });
+    }
+
+    function createUser() {
+      fetch('https://reqres.in/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'Priya', job: 'Developer' })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('message').innerText = '✅ User created!';
+        console.log('POST:', data);
+      })
+      .catch(err => {
+        console.error('POST Error:', err);
+        document.getElementById('message').innerText = '❌ POST failed.';
+      });
+    }
+
+    function updateStatus() {
+      const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+
+      fetch('https://reqres.in/api/users/2', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      })
+      .then(res => res.json())
+      .then(data => {
+        currentStatus = newStatus;
+        document.getElementById('status').innerText = currentStatus;
+        document.getElementById('message').innerText = '✅ Status updated!';
+        console.log('PATCH:', data);
+      })
+      .catch(err => {
+        console.error('PATCH Error:', err);
+        document.getElementById('message').innerText = '❌ PATCH failed.';
+      });
+    }
+
+    function deleteUser() {
+      fetch('https://reqres.in/api/users/2', {
+        method: 'DELETE'
+      })
+      .then(res => {
+        if (res.status === 204) {
+          document.getElementById('message').innerText = '✅ User deleted!';
+          console.log('DELETE: Success (204)');
+        } else {
+          throw new Error('Unexpected status: ' + res.status);
+        }
+      })
+      .catch(err => {
+        console.error('DELETE Error:', err);
+        document.getElementById('message').innerText = '❌ DELETE failed.';
+      });
+    }
+  </script>
+
+</body>
+</html>
